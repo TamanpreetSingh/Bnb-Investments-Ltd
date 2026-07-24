@@ -3,228 +3,175 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
-import { ArrowRight, Users } from "lucide-react";
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 28 },
-  visible: { opacity: 1, y: 0 },
-};
-
-const scaleIn = {
-  hidden: { opacity: 0, scale: 1.04 },
-  visible: { opacity: 1, scale: 1 },
-};
+import { ArrowRight } from "lucide-react";
 
 export default function Hero() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-50px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
+
+  const scrollTo = (id: string) => {
+    document.querySelector(id)?.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
     <section
       id="hero"
-      className="min-h-screen bg-white flex items-center pt-20"
+      className="relative w-full bg-white overflow-hidden"
+      style={{ minHeight: "640px", paddingTop: "80px" }}
       aria-label="Hero section"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10 w-full py-16 lg:py-24">
-        <div className="grid lg:grid-cols-[1fr_1.1fr] gap-12 lg:gap-16 items-center">
-          {/* Left — Text */}
-          <div ref={ref} className="flex flex-col">
+      {/* Left white text area */}
+      <div
+        className="absolute inset-0 flex items-center z-10"
+        style={{ top: "80px" }}
+      >
+        <div style={{ paddingLeft: "clamp(32px, 6vw, 96px)", paddingRight: "24px", width: "50%" }}>
+          <div ref={ref} className="max-w-[480px] flex flex-col">
+
             {/* Eyebrow */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ duration: 0.7, delay: 0 }}
-              className="flex items-center gap-3 mb-7"
-            >
-              <div
-                className="w-6 h-px"
-                style={{ backgroundColor: "#C89B3C" }}
-              />
-              <span
-                className="text-xs font-semibold tracking-widest uppercase"
-                style={{
-                  color: "#C89B3C",
-                  fontFamily: "Inter, system-ui, sans-serif",
-                  letterSpacing: "0.18em",
-                }}
-              >
-                Building Value · Creating Legacies
-              </span>
-            </motion.div>
-
-            {/* Heading */}
-            <motion.h1
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ duration: 0.7, delay: 0.1 }}
-              className="text-5xl lg:text-6xl xl:text-7xl leading-[1.08] tracking-tight mb-7"
-              style={{
-                fontFamily: "Playfair Display, Georgia, serif",
-                color: "#0F172A",
-                fontWeight: 700,
-              }}
-            >
-              Smart{" "}
-              <em
-                style={{
-                  fontStyle: "italic",
-                  color: "#C89B3C",
-                }}
-              >
-                Investments.
-              </em>
-              <br />
-              Stronger
-              <br />
-              Communities.
-            </motion.h1>
-
-            {/* Paragraph */}
             <motion.p
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ duration: 0.7, delay: 0.2 }}
-              className="text-base lg:text-lg leading-relaxed mb-10 max-w-md"
-              style={{
-                fontFamily: "Inter, system-ui, sans-serif",
-                color: "#4B5563",
-                fontWeight: 400,
-              }}
+              initial={{ opacity: 0, y: 15 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase mb-4 text-[#C89B3C]"
+              style={{ fontFamily: "Inter, system-ui, sans-serif" }}
             >
-              BNB Investments Ltd. invests, develops, and manages premium
-              commercial properties across Canada — delivering disciplined
-              returns and lasting value for our partners and communities.
+              BUILDING VALUE. CREATING LEGACIES.
             </motion.p>
 
-            {/* Buttons */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ duration: 0.7, delay: 0.3 }}
-              className="flex flex-col sm:flex-row gap-4"
+            {/* Main Heading */}
+            <motion.h1
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] mb-4 text-[#0F172A]"
+              style={{ fontFamily: "Playfair Display, Georgia, serif" }}
             >
-              <motion.a
-                href="#sectors"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-medium text-white transition-all duration-200"
+              Investing in Properties.
+              <br />
+              Building{" "}
+              <span className="italic font-normal text-[#C89B3C]">
+                Better Futures.
+              </span>
+            </motion.h1>
+
+            {/* Gold Accent Divider Line */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={inView ? { opacity: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.14 }}
+              style={{ width: "40px", height: "2px", backgroundColor: "#C89B3C", marginBottom: "24px" }}
+            />
+
+            {/* Short Paragraph */}
+            <motion.p
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.18 }}
+              className="text-xs sm:text-sm text-gray-600 leading-relaxed mb-8 max-w-sm"
+              style={{ fontFamily: "Inter, system-ui, sans-serif" }}
+            >
+              BNB Investments Ltd. is a Canadian investment company focused on
+              acquiring, developing, and managing high-quality commercial properties
+              that generate lasting value and strong communities.
+            </motion.p>
+
+            {/* Action Buttons */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.24 }}
+              className="flex flex-wrap items-center gap-4"
+            >
+              <motion.button
+                whileHover={{ scale: 1.04, y: -2 }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => scrollTo("#sectors")}
                 style={{
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "13px 30px",
                   backgroundColor: "#0F172A",
+                  color: "#FFFFFF",
                   fontFamily: "Inter, system-ui, sans-serif",
-                  fontWeight: 500,
-                  letterSpacing: "0.02em",
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document
-                    .querySelector("#sectors")
-                    ?.scrollIntoView({ behavior: "smooth" });
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                  border: "none",
+                  borderRadius: "2px",
+                  cursor: "pointer",
+                  boxShadow: "0 4px 12px rgba(15, 23, 42, 0.2)",
+                  transition: "all 0.3s ease",
                 }}
               >
-                Explore Investments
-                <ArrowRight size={15} />
-              </motion.a>
+                <span>OUR INVESTMENTS</span>
+                <ArrowRight size={14} />
+              </motion.button>
 
-              <motion.a
-                href="#contact"
-                whileHover={{ y: -2 }}
-                whileTap={{ y: 0 }}
-                className="inline-flex items-center justify-center gap-2 px-7 py-3.5 text-sm font-medium transition-all duration-200 border"
+              <motion.button
+                whileHover={{
+                  scale: 1.04,
+                  y: -2,
+                  backgroundColor: "#C89B3C",
+                  borderColor: "#C89B3C",
+                  color: "#0F172A",
+                  boxShadow: "0 0 25px rgba(200, 155, 60, 0.6), 0 4px 15px rgba(200, 155, 60, 0.4)",
+                }}
+                whileTap={{ scale: 0.97 }}
+                onClick={() => scrollTo("#enquiry")}
                 style={{
-                  borderColor: "#D1D5DB",
+                  display: "inline-flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  gap: "8px",
+                  padding: "12px 28px",
+                  backgroundColor: "#FFFFFF",
                   color: "#0F172A",
                   fontFamily: "Inter, system-ui, sans-serif",
-                  fontWeight: 500,
-                  letterSpacing: "0.02em",
-                }}
-                onClick={(e) => {
-                  e.preventDefault();
-                  document
-                    .querySelector("#contact")
-                    ?.scrollIntoView({ behavior: "smooth" });
+                  fontSize: "12px",
+                  fontWeight: 700,
+                  letterSpacing: "0.04em",
+                  textTransform: "uppercase",
+                  border: "2px solid #0F172A",
+                  borderRadius: "2px",
+                  cursor: "pointer",
+                  transition: "all 0.3s ease",
                 }}
               >
-                <Users size={15} />
-                Partner With Us
-              </motion.a>
+                <span>PARTNER WITH US</span>
+              </motion.button>
             </motion.div>
 
-            {/* Small trust line */}
-            <motion.div
-              variants={fadeUp}
-              initial="hidden"
-              animate={inView ? "visible" : "hidden"}
-              transition={{ duration: 0.7, delay: 0.38 }}
-              className="mt-12 flex items-center gap-6 pt-8 border-t border-gray-100"
-            >
-              {[
-                { value: "$200M+", label: "Assets Managed" },
-                { value: "10+", label: "Years Experience" },
-                { value: "15+", label: "Projects" },
-              ].map((stat) => (
-                <div key={stat.label} className="flex flex-col">
-                  <span
-                    className="text-xl font-bold"
-                    style={{
-                      fontFamily: "Playfair Display, Georgia, serif",
-                      color: "#0F172A",
-                    }}
-                  >
-                    {stat.value}
-                  </span>
-                  <span
-                    className="text-xs"
-                    style={{
-                      fontFamily: "Inter, system-ui, sans-serif",
-                      color: "#6B7280",
-                    }}
-                  >
-                    {stat.label}
-                  </span>
-                </div>
-              ))}
-            </motion.div>
           </div>
-
-          {/* Right — Image */}
-          <motion.div
-            variants={scaleIn}
-            initial="hidden"
-            animate={inView ? "visible" : "hidden"}
-            transition={{ duration: 0.9, delay: 0.1 }}
-            className="relative w-full"
-          >
-            <div
-              className="relative overflow-hidden"
-              style={{
-                borderRadius: "4px",
-                boxShadow:
-                  "0 20px 60px rgba(0,0,0,0.10), 0 4px 16px rgba(0,0,0,0.06)",
-              }}
-            >
-              <Image
-                src="/images/hero-building.png"
-                alt="Modern glass office tower — BNB Investments Ltd commercial property"
-                width={900}
-                height={1050}
-                className="w-full h-auto object-cover"
-                style={{ aspectRatio: "4/4.6", objectFit: "cover" }}
-                priority
-                sizes="(max-width: 768px) 100vw, 55vw"
-              />
-            </div>
-            {/* Gold accent bar */}
-            <div
-              className="absolute -bottom-4 -left-4 w-20 h-1"
-              style={{ backgroundColor: "#C89B3C" }}
-            />
-          </motion.div>
         </div>
       </div>
+
+      {/* Right Image */}
+      <motion.div
+        initial={{ opacity: 0, scale: 1.02 }}
+        animate={inView ? { opacity: 1, scale: 1 } : {}}
+        transition={{ duration: 0.8, delay: 0.1 }}
+        className="absolute top-0 right-0 bottom-0 z-0"
+        style={{ left: "44%", top: "80px" }}
+      >
+        <Image
+          src="/images/hero-building.png"
+          alt="BNB Investments Ltd modern wide commercial office building at golden hour"
+          fill
+          className="object-cover object-left-center"
+          priority
+          sizes="56vw"
+        />
+        <div
+          className="absolute inset-y-0 left-0 pointer-events-none"
+          style={{ width: "120px", background: "linear-gradient(to right, white, transparent)" }}
+        />
+      </motion.div>
+
+      <div style={{ height: "560px" }} />
     </section>
   );
 }

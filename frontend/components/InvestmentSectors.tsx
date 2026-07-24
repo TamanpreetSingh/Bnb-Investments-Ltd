@@ -3,196 +3,136 @@
 import { useRef } from "react";
 import Image from "next/image";
 import { motion, useInView } from "framer-motion";
+import { Building2, ShoppingBag, Truck, Building } from "lucide-react";
 
 const sectors = [
   {
     title: "Office",
-    subtitle: "Class A & B Assets",
+    icon: Building2,
     image: "/images/sector-office.png",
-    description:
-      "Premium office towers and business parks in Canada's major urban centres.",
   },
   {
     title: "Retail",
-    subtitle: "High-Traffic Locations",
+    icon: ShoppingBag,
     image: "/images/sector-retail.png",
-    description:
-      "Strategically located retail plazas and commercial centres anchored by strong tenants.",
   },
   {
     title: "Industrial",
-    subtitle: "Logistics & Distribution",
+    icon: Truck,
     image: "/images/sector-industrial.png",
-    description:
-      "Modern industrial and logistics facilities serving Canada's growing e-commerce sector.",
   },
   {
-    title: "Mixed Use",
-    subtitle: "Urban Developments",
+    title: "Mixed-Use",
+    icon: Building,
     image: "/images/sector-mixed.png",
-    description:
-      "Integrated developments combining retail, office, and residential uses in prime urban locations.",
   },
 ];
 
 export default function InvestmentSectors() {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-80px" });
+  const inView = useInView(ref, { once: true, margin: "-40px" });
 
   return (
-    <section
-      id="sectors"
-      className="py-24 lg:py-32 bg-white"
-      aria-label="Investment sectors"
+    <section 
+      id="sectors" 
+      className="bg-[#FAFAF8] border-y border-gray-200" 
+      style={{ minHeight: "550px", paddingTop: "140px", paddingBottom: "140px" }}
+      aria-label="Investment Sectors"
     >
-      <div className="max-w-7xl mx-auto px-6 lg:px-10">
-        {/* Header */}
-        <motion.div
-          ref={ref}
-          initial={{ opacity: 0, y: 24 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.7, ease: "easeOut" }}
-          className="text-center mb-16 lg:mb-20"
-        >
-          <div className="flex items-center justify-center gap-3 mb-5">
-            <div className="w-6 h-px" style={{ backgroundColor: "#C89B3C" }} />
-            <span
-              className="text-xs font-semibold uppercase tracking-widest"
-              style={{
-                color: "#C89B3C",
-                fontFamily: "Inter, system-ui, sans-serif",
-                letterSpacing: "0.18em",
-              }}
+      <div style={{ paddingLeft: "clamp(32px, 6vw, 96px)", paddingRight: "clamp(32px, 6vw, 96px)", width: "100%" }}>
+        <div ref={ref} className="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-12 items-center">
+
+          {/* Left Column - Focus Header & Text (Aligned with Hero section) */}
+          <div className="lg:col-span-5 flex flex-col items-start pr-0 lg:pr-4">
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5 }}
+              className="text-[11px] sm:text-xs font-bold tracking-[0.18em] uppercase mb-4 text-[#C89B3C]"
+              style={{ fontFamily: "Inter, system-ui, sans-serif" }}
             >
-              What We Invest In
-            </span>
-            <div className="w-6 h-px" style={{ backgroundColor: "#C89B3C" }} />
+              OUR FOCUS
+            </motion.p>
+
+            <motion.h2
+              initial={{ opacity: 0, y: 20 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.6, delay: 0.08 }}
+              className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-[1.12] mb-4 text-[#0F172A]"
+              style={{ fontFamily: "Playfair Display, Georgia, serif" }}
+            >
+              Commercial Properties.
+              <br />
+              Built for Tomorrow.
+            </motion.h2>
+
+            <motion.div
+              initial={{ opacity: 0, scaleX: 0 }}
+              animate={inView ? { opacity: 1, scaleX: 1 } : {}}
+              transition={{ duration: 0.5, delay: 0.12 }}
+              className="w-10 h-[2px] bg-[#C89B3C] mb-6 origin-left"
+            />
+
+            <motion.p
+              initial={{ opacity: 0, y: 15 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.16 }}
+              className="text-xs sm:text-sm text-gray-600 leading-relaxed max-w-sm"
+              style={{ fontFamily: "Inter, system-ui, sans-serif" }}
+            >
+              We invest in and develop high-quality commercial assets that drive economic growth and create lasting impact.
+            </motion.p>
           </div>
 
-          <h2
-            className="text-4xl lg:text-5xl xl:text-6xl mb-5"
-            style={{
-              fontFamily: "Playfair Display, Georgia, serif",
-              color: "#0F172A",
-              fontWeight: 700,
-              lineHeight: "1.1",
-            }}
-          >
-            Investment Sectors
-          </h2>
+          {/* Right Column - 4 Image Cards Grid */}
+          <div className="lg:col-span-7 grid grid-cols-2 sm:grid-cols-4 gap-4 sm:gap-5">
+            {sectors.map((sector, index) => {
+              const Icon = sector.icon;
+              return (
+                <motion.div
+                  key={sector.title}
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={inView ? { opacity: 1, y: 0 } : {}}
+                  transition={{ duration: 0.5, delay: index * 0.08 + 0.15 }}
+                  className="bg-white rounded-xl border border-gray-200/80 shadow-sm overflow-hidden flex flex-col group hover:shadow-md transition-all duration-300"
+                >
+                  {/* Image Container */}
+                  <div className="relative w-full h-[260px] sm:h-[300px] bg-gray-100">
+                    <Image
+                      src={sector.image}
+                      alt={`${sector.title} property — BNB Investments`}
+                      fill
+                      className="object-cover object-center group-hover:scale-105 transition-transform duration-500"
+                      sizes="(max-width: 640px) 50vw, (max-width: 1024px) 25vw, 20vw"
+                    />
+                    
+                    {/* Overlapping Icon Badge */}
+                    <div className="absolute -bottom-5 left-1/2 -translate-x-1/2 w-10 h-10 rounded-full bg-[#0F172A] border-2 border-[#C89B3C] flex items-center justify-center text-[#C89B3C] shadow-md z-10">
+                      <Icon size={18} strokeWidth={1.8} />
+                    </div>
+                  </div>
 
-          <p
-            className="text-base lg:text-lg max-w-xl mx-auto"
-            style={{
-              fontFamily: "Inter, system-ui, sans-serif",
-              color: "#6B7280",
-              lineHeight: "1.7",
-            }}
-          >
-            We pursue opportunities across four core commercial real estate
-            sectors, each selected for long-term income potential and capital
-            appreciation.
-          </p>
-        </motion.div>
-
-        {/* Grid */}
-        <motion.div
-          initial="hidden"
-          animate={inView ? "visible" : "hidden"}
-          variants={{
-            hidden: {},
-            visible: { transition: { staggerChildren: 0.1 } },
-          }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6"
-        >
-          {sectors.map((sector) => (
-            <motion.div
-              key={sector.title}
-              variants={{
-                hidden: { opacity: 0, y: 28 },
-                visible: {
-                  opacity: 1,
-                  y: 0,
-                  transition: { duration: 0.65, ease: "easeOut" },
-                },
-              }}
-              className="group cursor-pointer"
-            >
-              {/* Image */}
-              <div
-                className="relative overflow-hidden mb-5"
-                style={{
-                  borderRadius: "2px",
-                  aspectRatio: "3/3.6",
-                }}
-              >
-                <Image
-                  src={sector.image}
-                  alt={`${sector.title} commercial real estate — BNB Investments`}
-                  fill
-                  className="object-cover transition-transform duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] group-hover:scale-105"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 25vw"
-                  loading="lazy"
-                />
-                {/* Overlay */}
-                <div
-                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                  style={{
-                    background:
-                      "linear-gradient(to top, rgba(15,23,42,0.35) 0%, transparent 60%)",
-                  }}
-                />
-              </div>
-
-              {/* Card text */}
-              <div className="flex flex-col gap-1.5">
-                <div className="flex items-center gap-0">
-                  <h3
-                    className="text-xl font-semibold"
-                    style={{
-                      fontFamily: "Playfair Display, Georgia, serif",
-                      color: "#0F172A",
-                      fontWeight: 600,
-                    }}
+                  {/* Card Title Bottom */}
+                  <div 
+                    className="text-center mt-auto bg-white flex flex-col items-center justify-center"
+                    style={{ paddingTop: "48px", paddingBottom: "28px", paddingLeft: "12px", paddingRight: "12px" }}
                   >
-                    {sector.title}
-                  </h3>
-                </div>
+                    <h3
+                      className="text-sm sm:text-base font-semibold text-[#0F172A] group-hover:text-[#C89B3C] transition-colors duration-200"
+                      style={{ fontFamily: "Playfair Display, Georgia, serif" }}
+                    >
+                      {sector.title}
+                    </h3>
+                  </div>
+                </motion.div>
+              );
+            })}
+          </div>
 
-                {/* Gold underline — expands on hover */}
-                <div
-                  className="h-px w-8 group-hover:w-full transition-all duration-400"
-                  style={{ backgroundColor: "#C89B3C" }}
-                />
-
-                <p
-                  className="text-xs mt-1"
-                  style={{
-                    fontFamily: "Inter, system-ui, sans-serif",
-                    color: "#6B7280",
-                    letterSpacing: "0.06em",
-                    textTransform: "uppercase",
-                    fontWeight: 500,
-                  }}
-                >
-                  {sector.subtitle}
-                </p>
-
-                <p
-                  className="text-sm mt-2 leading-relaxed"
-                  style={{
-                    fontFamily: "Inter, system-ui, sans-serif",
-                    color: "#4B5563",
-                    lineHeight: "1.65",
-                  }}
-                >
-                  {sector.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );
 }
+
+
