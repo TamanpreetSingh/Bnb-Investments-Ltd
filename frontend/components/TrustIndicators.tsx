@@ -37,7 +37,7 @@ export default function TrustIndicators() {
 
   return (
     <section className="bg-[#FAFAF8] py-28 lg:py-36 border-t border-b border-gray-200/70" aria-label="Trust indicators">
-      <div className="w-full pl-8 sm:pl-10 lg:pl-12 xl:pl-16 pr-0">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         <div
           ref={ref}
           className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 w-full items-stretch"

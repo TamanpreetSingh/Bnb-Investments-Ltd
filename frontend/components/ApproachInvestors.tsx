@@ -15,7 +15,7 @@ export default function ApproachInvestors() {
 
   return (
     <section id="approach" className="bg-white py-32 lg:py-44 border-b border-gray-200/70" aria-label="Our Approach and Investors">
-      <div className="w-full pl-8 lg:pl-14 xl:pl-20 pr-0" style={{ paddingLeft: "24px" }}>
+      <div style={{ paddingLeft: "clamp(32px, 6vw, 96px)", paddingRight: "clamp(32px, 6vw, 96px)", width: "100%" }}>
         <div ref={ref} className="grid grid-cols-1 lg:grid-cols-3 gap-8 lg:gap-10 items-stretch">
 
           {/* Left Card: Our Approach */}

@@ -27,7 +27,7 @@ export default function Footer() {
 
   return (
     <footer className="bg-[#0F172A] text-white pt-16 pb-8 border-t border-white/10" aria-label="Site Footer">
-      <div className="w-full pl-8 sm:pl-10 lg:pl-12 xl:pl-16 pr-0">
+      <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-14 xl:px-20">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-10 pb-12 border-b border-white/10">
 
           {/* Col 1: Brand */}
@@ -35,7 +35,7 @@ export default function Footer() {
             <button
               onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
               className="flex items-center gap-2 text-left focus:outline-none bg-transparent border-none cursor-pointer"
-              style={{ paddingLeft: "24px" }}
+              style={{ paddingLeft: "24px", paddingRight: "24px" }}
             >
               <div className="h-9 sm:h-10 w-auto flex-shrink-0 flex items-center justify-center">
                 <Image
@@ -59,7 +59,7 @@ export default function Footer() {
 
             <p
               className="text-xs text-gray-400 leading-relaxed max-w-sm"
-              style={{ fontFamily: "Inter, system-ui, sans-serif", paddingLeft: "24px" }}
+              style={{ fontFamily: "Inter, system-ui, sans-serif", paddingLeft: "24px", paddingRight: "24px" }}
             >
               A Canadian investment company focused on creating long-term value
               through strategic commercial real estate investments.
@@ -67,7 +67,7 @@ export default function Footer() {
           </div>
 
           {/* Col 2: Quick Links */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
+          <div className="lg:col-span-2 flex flex-col gap-3" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white">
               Quick Links
             </h3>
@@ -87,7 +87,7 @@ export default function Footer() {
           </div>
 
           {/* Col 3: Our Focus */}
-          <div className="lg:col-span-2 flex flex-col gap-3">
+          <div className="lg:col-span-2 flex flex-col gap-3" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white">
               Our Focus
             </h3>
@@ -107,7 +107,7 @@ export default function Footer() {
           </div>
 
           {/* Col 4: For Investors */}
-          <div className="lg:col-span-4 flex flex-col gap-4">
+          <div className="lg:col-span-4 flex flex-col gap-4" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
             <h3 className="text-xs font-bold uppercase tracking-wider text-white">
               For Investors
             </h3>
@@ -148,7 +148,7 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500">
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
           <p style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
             © {new Date().getFullYear()} BNB Investments Ltd. All rights reserved.
           </p>

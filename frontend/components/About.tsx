@@ -16,12 +16,13 @@ export default function About() {
   return (
     <section
       id="about"
-      className="relative w-full bg-white py-32 lg:py-44 overflow-hidden min-h-[560px] lg:min-h-[640px] flex items-center border-b border-gray-200/70"
+      className="relative w-full bg-white overflow-hidden flex flex-col lg:block border-b border-gray-200/70"
+      style={{ paddingTop: "120px", paddingBottom: "100px" }}
       aria-label="About BNB Investments"
     >
       {/* Left Text Container matching Hero section padding exactly */}
-      <div className="w-full relative z-10 flex items-center">
-        <div style={{ paddingLeft: "clamp(32px, 6vw, 96px)", paddingRight: "24px", width: "50%" }}>
+      <div className="relative lg:absolute lg:inset-y-0 lg:left-0 lg:w-[48%] lg:flex lg:items-center z-10 pt-10 pb-8 lg:py-0">
+        <div style={{ paddingLeft: "clamp(24px, 6vw, 96px)", paddingRight: "24px" }}>
           <div ref={ref} className="max-w-[480px] flex flex-col">
 
             {/* Eyebrow */}
@@ -141,26 +142,32 @@ export default function About() {
         </div>
       </div>
 
-      {/* Desktop Right Image */}
+      {/* Right Image */}
       <motion.div
         initial={{ opacity: 0, scale: 1.02 }}
         animate={inView ? { opacity: 1, scale: 1 } : {}}
         transition={{ duration: 0.8, delay: 0.1 }}
-        className="hidden lg:block absolute top-0 right-0 bottom-0 z-0"
-        style={{ left: "44%" }}
+        className="relative lg:absolute lg:top-0 lg:right-0 lg:bottom-0 lg:left-[44%] z-0 w-full lg:w-auto h-[300px] sm:h-[400px] lg:h-auto"
       >
         <Image
           src="/images/lobby.png"
           alt="BNB Investments Ltd luxury commercial lobby interior"
           fill
           className="object-cover object-center"
-          sizes="56vw"
+          sizes="(max-width: 1024px) 100vw, 56vw"
         />
         <div
-          className="absolute inset-y-0 left-0 pointer-events-none"
+          className="absolute inset-y-0 left-0 pointer-events-none hidden lg:block"
           style={{ width: "120px", background: "linear-gradient(to right, white, transparent)" }}
         />
+        {/* Subtle fade for mobile top edge to blend with white text section */}
+        <div
+          className="absolute inset-x-0 top-0 pointer-events-none lg:hidden"
+          style={{ height: "40px", background: "linear-gradient(to bottom, white, transparent)" }}
+        />
       </motion.div>
+
+      <div className="hidden lg:block" style={{ height: "480px" }} />
     </section>
   );
 }
