@@ -36,6 +36,14 @@ export default function EnquiryForm() {
     setError(null);
 
     try {
+      // Validate phone number format if provided (minimum 10 digits, max 15 digits)
+      if (form.phone && form.phone.trim() !== "") {
+        const digitsOnly = form.phone.replace(/\D/g, "");
+        if (digitsOnly.length < 10 || digitsOnly.length > 15) {
+          throw new Error("Please enter a valid phone number containing 10 to 15 digits.");
+        }
+      }
+
       const response = await fetch("https://formsubmit.co/ajax/leasing@bnbinvestmentsltd.com", {
         method: "POST",
         headers: {

@@ -148,15 +148,15 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-gray-500" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
+        <div className="pt-8 text-center text-xs text-gray-500" style={{ paddingLeft: "24px", paddingRight: "24px" }}>
           <p style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
             © {new Date().getFullYear()} BNB Investments Ltd. All rights reserved.
           </p>
-          <div className="flex items-center gap-6" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
-            <a href="#" className="hover:text-gray-300 transition-colors">Privacy Policy</a>
-            <span>|</span>
-            <a href="#" className="hover:text-gray-300 transition-colors">Terms of Use</a>
-          </div>
+        </div>
+
+        {/* Agency Attribution */}
+        <div className="mt-6 pt-6 border-t border-white/5 text-center text-[11px] text-gray-500" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+          Made with Love ❤️ by <span className="text-white font-semibold">SiraaLabs AI Agency</span> · Website: <a href="https://siraalabs.com" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#C89B3C] transition-colors font-medium">siraalabs.com</a> · Insta: <a href="https://instagram.com/siraalabs" target="_blank" rel="noopener noreferrer" className="text-white hover:text-[#C89B3C] transition-colors font-medium">siraalabs</a>
         </div>
 
       </div>
