@@ -21,6 +21,7 @@ export default function EnquiryForm() {
   });
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>
@@ -32,9 +33,40 @@ export default function EnquiryForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
-    await new Promise((r) => setTimeout(r, 1100));
-    setLoading(false);
-    setSubmitted(true);
+    setError(null);
+
+    try {
+      const response = await fetch("https://formsubmit.co/ajax/leasing@bnbinvestmentsltd.com", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Accept": "application/json",
+        },
+        body: JSON.stringify({
+          Name: form.name,
+          Company: form.company || "N/A",
+          Email: form.email,
+          Phone: form.phone || "N/A",
+          "Enquiring As": form.enquiringAs,
+          "Area of Interest": form.investmentType,
+          Message: form.message,
+          _subject: `New Investment Enquiry from ${form.name}`,
+          _replyto: form.email,
+          _captcha: "false",
+        }),
+      });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Failed to submit enquiry.");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err.message || "An unexpected error occurred. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const inputClass = "w-full px-5 py-4 text-sm sm:text-[15px] bg-white border border-gray-300 rounded-xl shadow-[0_2px_12px_-4px_rgba(0,0,0,0.06)] text-[#0F172A] placeholder-gray-400 focus:outline-none focus:border-[#C89B3C] focus:ring-4 focus:ring-[#C89B3C]/15 hover:border-gray-400 hover:shadow-md transition-all duration-300";
@@ -222,6 +254,12 @@ export default function EnquiryForm() {
                       </h3>
                       <div className="w-8 h-[2px] bg-[#C89B3C]" />
                     </div>
+
+                    {error && (
+                      <div className="p-4 text-sm text-red-800 bg-red-50 rounded-xl border border-red-200" style={{ fontFamily: "Inter, system-ui, sans-serif" }}>
+                        {error}
+                      </div>
+                    )}
 
                     {/* 2-Column Grid for Name & Company */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
